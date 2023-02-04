@@ -18,13 +18,18 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
+  //back-end gửi thông điệp "message" đến các client
   socket.emit("message", socket.id);
 
+  //back-end nhận thông điệp "disconnect"
   socket.on("disconnect", () => {
+    //back-end gửi thông điệp "callEnded" đến các client
     socket.broadcast.emit("callEnded");
   });
 
+  //back-end nhận thông điệp callUser
   socket.on("callUser", ({ userToCall, signalData, from, name }) => {
+    //back-end gửi thông điệp callUser đến user có id là "userToCall"
     io.to(userToCall).emit("callUser", { signal: signalData, from, name });
   });
 

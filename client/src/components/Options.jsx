@@ -53,7 +53,7 @@ const Options = ({ children }) => {
           >
             <Grid item xs={12} md={6} style={{ padding: 20 }}>
               <Typography gutterBottom variant="h6">
-                Account Info
+                Thông tin tài khoản
               </Typography>
               <TextField
                 label="Name"
@@ -69,13 +69,13 @@ const Options = ({ children }) => {
                   fullWidth
                   startIcon={<Assignment fontSize="large" />}
                 >
-                  Copy Your ID
+                  Sao chép ID
                 </Button>
               </CopyToClipboard>
             </Grid>
             <Grid item xs={12} md={6} style={{ padding: 20 }}>
               <Typography gutterBottom variant="h6">
-                Make a call
+                Tạo cuộc gọi
               </Typography>
               <TextField
                 label="ID to call"
@@ -92,7 +92,7 @@ const Options = ({ children }) => {
                   onClick={leaveCall}
                   style={{ marginTop: 20 }}
                 >
-                  Hang Up
+                  Tắt máy
                 </Button>
               ) : (
                 <Button
@@ -103,7 +103,7 @@ const Options = ({ children }) => {
                   onClick={() => callUser(idToCall)}
                   style={{ marginTop: 20 }}
                 >
-                  Call
+                  Gọi
                 </Button>
               )}
             </Grid>

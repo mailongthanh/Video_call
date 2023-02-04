@@ -4,8 +4,7 @@ import Peer from "simple-peer";
 
 const SocketContext = createContext();
 
-const socket = io("http://localhost:5000");
-// const socket = io("https://warm-wildwood-81069.herokuapp.com");
+const socket = io("https://node-api-t1or.onrender.com/");
 
 const ContextProvider = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
@@ -21,7 +20,6 @@ const ContextProvider = ({ children }) => {
   const connectionRef = useRef();
 
   useEffect(() => {
-    console.log("use Effect");
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((currentStream) => {
@@ -39,6 +37,7 @@ const ContextProvider = ({ children }) => {
     });
   }, [isReceived]);
 
+  //Function gọi khi ấn vào button "Answer"
   const answerCall = () => {
     setCallAccepted(true);
 
@@ -57,6 +56,7 @@ const ContextProvider = ({ children }) => {
     connectionRef.current = peer;
   };
 
+  //Function gọi khi ấn vào nút "Call"
   const callUser = (id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
     setIsReceived(true);
@@ -70,19 +70,21 @@ const ContextProvider = ({ children }) => {
       });
     });
 
+    //Client nhận thông điệp "stream" từ back-end
     peer.on("stream", (currentStream) => {
       userVideo.current.srcObject = currentStream;
     });
 
+    //Client nhận thông điệp "callAccepted" từ back-end
     socket.on("callAccepted", (signal) => {
       setCallAccepted(true);
-
       peer.signal(signal);
     });
 
     connectionRef.current = peer;
   };
 
+  //Function gọi khi ấn vào nút "Leave"
   const leaveCall = () => {
     setCallEnded(true);
 

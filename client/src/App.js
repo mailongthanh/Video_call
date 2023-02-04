@@ -5,9 +5,13 @@ import VideoPlayer from "./components/VideoPlayer";
 import Notifications from "./components/Notifications";
 import Options from "./components/Options";
 
+import background from "./assets/webBackground.jpg";
+import "./App.css";
+
 const App = () => {
   return (
     <div
+      className="app_container"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -29,8 +33,8 @@ const App = () => {
           border: "2px solid black",
         }}
       >
-        <Typography variant="h2" align="center">
-          Video chat
+        <Typography variant="h3" align="center">
+          Video Call
         </Typography>
       </AppBar>
 
